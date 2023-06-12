@@ -1,9 +1,8 @@
-class JobController{
-
+class JobController {
     // [GET] Job
-    index(req, res){
-        res.render('job')
+    index(req, res) {
+        res.render('job');
     }
 }
 
-module.exports = new JobController;
+module.exports = new JobController();

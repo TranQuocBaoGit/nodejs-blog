@@ -1,10 +1,8 @@
-class SiteController{
-
+class SiteController {
     // [GET] Job
-    index(req, res){
-        res.render('home')
+    index(req, res) {
+        res.render('home');
     }
-    
 }
 
-module.exports = new SiteController;
+module.exports = new SiteController();
