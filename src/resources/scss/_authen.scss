@@ -1,0 +1,82 @@
+#signup {
+    display: block;
+}
+.authen {
+    position: relative;
+    margin: 1rem 30% 2rem 30%;
+    width: 40%;
+}
+
+.authen input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px $main-border solid;
+    display: block;
+    width: 100%;
+    padding: 1rem 0;
+    font-size: 1.2rem;
+    color: $main-text;
+}
+
+.authen input:focus {
+    outline: 0;
+    border-bottom-color: $focus-border;
+}
+
+.input-stayfocus {
+    outline: 0;
+    border-bottom-color: $focus-border !important;
+}
+
+.authen label {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    pointer-events: none;
+}
+
+.authen label span {
+    display: inline-block;
+    font-size: 1.2rem;
+    // min-width: 5px;
+    color: $main-text;
+    transition: 0.3s cubic-bezier(0.7, -0.5, 0.25, 1.5);
+}
+
+.authen input:focus + label span {
+    color: $focus-text;
+    transform: translateY(-30px);
+}
+
+.span-stayfocus {
+    color: $focus-text !important;
+    transform: translateY(-30px) !important;
+}
+
+.authen button {
+    background-color: $signup-button;
+    display: block;
+    border: 0;
+    margin: auto;
+    width: 80%;
+    padding: 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 2rem;
+    color: $main-text;
+    transition: 0.3s;
+}
+
+.authen button:hover {
+    background-color: $signup-button-hover;
+    color: $signup-button-text;
+}
+
+.authen button:active {
+    background-color: $signup-button-active;
+    color: white;
+}
+
+.error-mes {
+    color: $error-text;
+}

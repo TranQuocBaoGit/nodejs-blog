@@ -2,15 +2,18 @@ const path = require('path');
 const express = require('express');
 var handlebars = require('express-handlebars');
 const morgan = require('morgan');
+const db = require('./config/db/index');
+const route = require('./routes');
+const cookieParser = require('cookie-parser');
+
 const app = express();
 const port = 3000;
 
-const route = require('./routes');
-
-app.use(express.static(path.join(__dirname, 'public')));
+//Connect to database
+db.connect();
 
 //HTTP logger
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 
 //middleware
 app.use(
@@ -18,7 +21,9 @@ app.use(
         extended: true,
     }),
 );
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+app.use(cookieParser());
 
 //template engine
 app.engine(

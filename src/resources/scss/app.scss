@@ -1,4 +1,5 @@
 @import 'variable';
+@import 'authen';
 form {
     margin-top: 2rem;
 }
@@ -6,6 +7,6 @@ form {
     margin: 1rem 0;
 }
 h1 {
-    color: $main-text-color;
+    color: $main-text;
     font-size: 2rem;
 }
