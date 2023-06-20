@@ -6,6 +6,13 @@ const handleErrors = (err) => {
     console.log(err.message, err.code);
     let errorMes = { email: '', password: '', username: '' };
 
+    //error for login
+    if (err.message === 'wrong email') {
+        errorMes.email = 'This email has not been registered.';
+    } else if (err.message === 'wrong password') {
+        errorMes.password = 'Incorrect password.';
+    }
+
     //duplicate email code
     if (err.code === 11000) {
         errorMes.email = 'This email has already been registered.';
@@ -43,18 +50,25 @@ class AuthenController {
 
     //[POST] for login and signup
     async login_post(req, res) {
-        const { email, password, username, birthdate } = req.body;
-        res.send('user login');
+        const { email, password } = req.body;
+        try {
+            const user = await User.login(email, password);
+            const token = createToken(user._id);
+            res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+            res.status(200).json({ user: user._id });
+        } catch (error) {
+            const errorMes = handleErrors(error);
+            res.status(400).json({ errorMes });
+        }
     }
 
     async signup_post(req, res) {
-        const { email, password, username, birthdate } = req.body;
+        const { email, password, username } = req.body;
         try {
             const user = await User.create({
                 email,
                 password,
                 username,
-                birthdate,
             });
             const token = createToken(user._id);
             res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
